@@ -10,11 +10,10 @@ class HarryPotterV1
   end
 
   def parse(info)
-    JSON.parse(info)
+    JSON.parse(info.body)
   end
 
   def members_response(query)
-    binding.pry
     conn.get("characters?key=#{@api_key}&house=#{query}")
   end
 
