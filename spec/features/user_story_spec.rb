@@ -4,10 +4,14 @@ RSpec.describe 'as a user', type: :feature do
   context 'when i visit "/" and i select "Gryffindor" and i click "Search for Members"' do
     it 'i should be on "/search"' do
       visit "/"
-      find('#house').find(:xpath, 'option[0]').select_option
-      click_button('Search for Members')
 
-      expect(current_path).to be('/search')
+      within('.select-field') do
+        select('Gryffindor')
+      end
+
+      click_button('Search For Members')
+
+      expect(current_path).to eq(search_path)
     end
 
     it 'and i should see the total number that belong to Gryffindor (21)' do
